@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 public class Solution {
     public int FindMaxLength(int[] nums) {
         Dictionary<int, int> countMap = new Dictionary<int, int>();
