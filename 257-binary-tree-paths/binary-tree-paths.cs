@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 public class Solution {
     public IList<string> BinaryTreePaths(TreeNode root) {
         List<string> result = new List<string>();
