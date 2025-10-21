@@ -2,19 +2,26 @@ public class Solution {
     public int LengthOfLIS(int[] nums) {
         if (nums == null || nums.Length == 0) return 0;
         
-        int[] dp = new int[nums.Length];
-        Array.Fill(dp, 1);
-        int maxLength = 1;
+        int[] tails = new int[nums.Length];
+        int size = 0;
         
-        for (int i = 1; i < nums.Length; i++) {
-            for (int j = 0; j < i; j++) {
-                if (nums[i] > nums[j]) {
-                    dp[i] = Math.Max(dp[i], dp[j] + 1);
+        foreach (int num in nums) {
+            int left = 0, right = size;
+            
+            // Binary search to find the position to replace/append
+            while (left < right) {
+                int mid = left + (right - left) / 2;
+                if (tails[mid] < num) {
+                    left = mid + 1;
+                } else {
+                    right = mid;
                 }
             }
-            maxLength = Math.Max(maxLength, dp[i]);
+            
+            tails[left] = num;
+            if (left == size) size++;
         }
         
-        return maxLength;
+        return size;
     }
 }
